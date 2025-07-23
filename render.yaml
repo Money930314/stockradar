@@ -1,12 +1,10 @@
 services:
-  - type: web
+  - type: worker                 # ← 原本是 web
     name: stock-radar-bot
     env: python
     plan: free
-    buildCommand:  pip install -r requirements.txt
-    startCommand:  python main.py
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
     envVars:
-      - key: TG_TOKEN
-        sync: false          # 在 Render 控制台 GUI 中填實際 Token
-      - key: PORT
-        value: "10000"       # 雖然 bot 用 polling，但 Render 仍需埠
+      - key: TG_TOKEN            # 在 GUI 填實際 Token
+        sync: false
