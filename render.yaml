@@ -1,9 +1,12 @@
 services:
   - type: web
-    name: stock-radar-webhook
-    runtime: python
+    name: stock-radar-bot
+    env: python
+    plan: free
+    buildCommand:  pip install -r requirements.txt
+    startCommand:  python main.py
     envVars:
       - key: TG_TOKEN
-        sync: false
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python main.py"
+        sync: false          # 在 Render 控制台 GUI 中填實際 Token
+      - key: PORT
+        value: "10000"       # 雖然 bot 用 polling，但 Render 仍需埠
