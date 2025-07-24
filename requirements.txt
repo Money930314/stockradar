@@ -2,9 +2,13 @@ python-telegram-bot>=20.8
 yfinance>=0.2.40
 pandas>=2.2
 matplotlib>=3.9
-mplfinance==0.12.9b7     # 或 0.12.10b0，均為最新 beta
+mplfinance==0.12.9b7
 requests>=2.32
 twstock>=1.3.3
 lxml>=4.9
 python-dotenv>=1.0
 feedparser>=6.0
+
+# ↓↓↓ 新增 ↓↓↓
+lightgbm>=4.3     # 梯度提升樹模型
+scikit-learn>=1.5 # 評估指標、train/test split
