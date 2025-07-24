@@ -122,7 +122,7 @@ async def help_cb(u: Update, c: ContextTypes.DEFAULT_TYPE):
                                   reply_markup=_help_keyboard("news"))
 
 # -------------------- main ----------------------------------------------
-def main():
+def run_bot():
     if not TOKEN:
         raise RuntimeError("請設定環境變數 TG_TOKEN")
     app = ApplicationBuilder().token(TOKEN).build()
@@ -141,4 +141,4 @@ def main():
     app.run_polling(allowed_updates=["message", "callback_query"])
 
 if __name__ == "__main__":
-    main()
+    run_bot()
