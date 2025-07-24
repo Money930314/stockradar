@@ -10,6 +10,7 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, Callb
 from stock_info_handler import price_cmd, fund_cmd, ta_cmd, fibo_cmd
 from pattern_detector import pattern_cmd, pattern_help_cmd
 from news_handler import news_cmd
+from top10_handler import top10_cmd
 
 
 # ---------- cert workaround (curl‑77) -----------------------------------
@@ -121,8 +122,9 @@ async def help_cb(u: Update, c: ContextTypes.DEFAULT_TYPE):
                                   reply_markup=_help_keyboard("news"))
 
 # -------------------- main ----------------------------------------------
-def run_bot():
-    """專給外部匯入呼叫；與 __main__ 共用程式本體。"""
+def main():
+    if not TOKEN:
+        raise RuntimeError("請設定環境變數 TG_TOKEN")
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler(["start", "hello"], start_cmd))
     app.add_handler(CommandHandler("help", help_cmd))
@@ -134,8 +136,9 @@ def run_bot():
     app.add_handler(CommandHandler("pattern", pattern_cmd))
     app.add_handler(CommandHandler("patternhelp", pattern_help_cmd))
     app.add_handler(CommandHandler("news", news_cmd))
+    app.add_handler(CommandHandler("top10", top10_cmd))
     logging.info("Bot started…")
     app.run_polling(allowed_updates=["message", "callback_query"])
 
 if __name__ == "__main__":
-    run_bot()
+    main()
