@@ -83,8 +83,7 @@ def _train_predict(df: pd.DataFrame):
 
 # ─────────────────── 主流程 ────────────────────
 def _get_all_stock_codes() -> List[str]:
-    """僅取 4 位數的上市櫃代碼，排除 7xxxx 票券 / ETN / 債券"""
-    return [c for c in twstock.codes.keys() if c.isdigit() and len(c) == 4]
+     return ["2330", "2303", "2603"]
 
 
 def analyze_market() -> pd.DataFrame:
